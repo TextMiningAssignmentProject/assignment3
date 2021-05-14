@@ -26,6 +26,6 @@ Run as administrator
 ```
 conda create --name tmclass-3 python=3.7
 conda activate tmclass-3
-conda install -c conda-forge jpype1
+conda install -c conda-forge jpype1=1.1.2
 pip install konlpy requests bs4
 ```
