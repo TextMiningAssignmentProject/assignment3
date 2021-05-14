@@ -26,6 +26,10 @@ Run as administrator
 ```
 conda create --name tmclass-3 python=3.7
 conda activate tmclass-3
-conda install -c conda-forge jpype1=1.1.2
+conda install -c conda-forge jpype1=1.1.2 ipykernel
 pip install konlpy requests bs4
 ```
+
+### vs code
+
+1. Extensions for Python
