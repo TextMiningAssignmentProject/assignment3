@@ -28,7 +28,6 @@ for c in corpus_anoun:
         continue
     corpus_result.append(c)
 print(len(corpus_result))
-print(corpus_result)
 
 # %%
 # 총 카테고리(4) : 자기계발, 프로그래밍, 봉사활동, 책
@@ -51,8 +50,33 @@ booksCorpus = booksText.split("|")
 selfCorpus = selfDev.split("|")
 programCorpus = program.split("|")
 volunCorpus = volunteer.split("|")
-
-vector = CountVectorizer()
-print(vector.fit_transform(booksCorpus).toarray())
+# corpus_result 사용
+c = {  # 카테고리 정의하기
+    "자기계발": {},
+    "프로그래밍": {},
+    "책": {},
+    "봉사활동": {}
+}
+# %%
+for word in corpus_result:
+    if (booksText.count(word) != 0):
+        c["책"][word] = booksText.count(word)
+    if (selfDev.count(word) != 0):
+        c["자기계발"][word] = selfDev.count(word)
+    if (program.count(word) != 0):
+        c["프로그래밍"][word] = program.count(word)
+    if (volunteer.count(word) != 0):
+        c["봉사활동"][word] = volunteer.count(word)
+print(c)
+# %%
+# sorted를 활용한 딕셔너리 정렬
+booksMax = ["책", sorted(c["책"].items(), key=lambda item: item[1])[-1][1]]
+selfDevMax = [ "자기계발", sorted(c["자기계발"].items(), key=lambda item: item[1])[-1][1] ]
+programMax = [ "프로그래밍", sorted(c["프로그래밍"].items(), key=lambda item: item[1])[-1][1] ]
+volunMax = ["봉사활동", sorted(c["봉사활동"].items(), key=lambda item: item[1])[-1][1]]
+print(booksMax)
+print(selfDevMax)
+print(programMax)
+print(volunMax)
 
 # %%

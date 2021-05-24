@@ -39,12 +39,12 @@ i = 0
 cmax_anoun = ""
 cmax_count = -1
 for anoun in corpus_anoun:
-  count = booksText.count(anoun)
-  c["자기계발"][anoun] = count
-  if (cmax_count < count and len(anoun) > 1):
-    cmax_anoun = anoun
-    cmax_count = count
-  i += 1
+    count = booksText.count(anoun)
+    c["자기계발"][anoun] = count
+    if (cmax_count < count and len(anoun) > 1):
+        cmax_anoun = anoun
+        cmax_count = count
+    i += 1
 c["자기계발"]["$CmaxValue"] = {cmax_anoun: cmax_count}
 print(c["자기계발"])
 print(c["자기계발"]["$CmaxValue"])
@@ -61,15 +61,17 @@ A = 362 - len(booksText.split("|"))
 programmingText = url.getCatText(saveLocation, "programming.txt")
 selfDevText = url.getCatText(saveLocation, "selfdev.txt")
 volunteerText = url.getCatText(saveLocation, "volunteer.txt")
-B = programmingText.count(list(c["자기계발"]["$CmaxValue"].keys())[0]) + selfDevText.count(list(
-    c["자기계발"]["$CmaxValue"].keys())[0]) + volunteerText.count(list(c["자기계발"]["$CmaxValue"].keys())[0])
+B = programmingText.count(list(
+    c["자기계발"]["$CmaxValue"].keys())[0]) + selfDevText.count(
+        list(c["자기계발"]["$CmaxValue"].keys())[0]) + volunteerText.count(
+            list(c["자기계발"]["$CmaxValue"].keys())[0])
 print(A, B)
-print("IECDF : ", log(A/B))
+print("IECDF : ", log(A / B))
 
 # %%
 ## CTF-IDCDF
 # log(CTF * IECDF)
-IECDF = log(A/B)
+IECDF = log(A / B)
 CTF = c["자기계발"]["$CmaxValue"]["생각"]
 print(log(CTF * IECDF))
 # %%
