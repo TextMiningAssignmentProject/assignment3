@@ -57,26 +57,48 @@ c = {  # 카테고리 정의하기
     "책": {},
     "봉사활동": {}
 }
+cMax = {}
 # %%
 for word in corpus_result:
-    if (booksText.count(word) != 0):
-        c["책"][word] = booksText.count(word)
-    if (selfDev.count(word) != 0):
-        c["자기계발"][word] = selfDev.count(word)
-    if (program.count(word) != 0):
-        c["프로그래밍"][word] = program.count(word)
-    if (volunteer.count(word) != 0):
-        c["봉사활동"][word] = volunteer.count(word)
-print(c)
+    c["책"][word] = booksText.count(word)
+    c["자기계발"][word] = selfDev.count(word)
+    c["프로그래밍"][word] = program.count(word)
+    c["봉사활동"][word] = volunteer.count(word)
 # %%
-# sorted를 활용한 딕셔너리 정렬
-booksMax = ["책", sorted(c["책"].items(), key=lambda item: item[1])[-1][1]]
-selfDevMax = [ "자기계발", sorted(c["자기계발"].items(), key=lambda item: item[1])[-1][1] ]
-programMax = [ "프로그래밍", sorted(c["프로그래밍"].items(), key=lambda item: item[1])[-1][1] ]
-volunMax = ["봉사활동", sorted(c["봉사활동"].items(), key=lambda item: item[1])[-1][1]]
-print(booksMax)
-print(selfDevMax)
-print(programMax)
-print(volunMax)
+# cMax 값 구하기
+for word in corpus_result:
+    maxL = max(
+        [c["책"][word], c["자기계발"][word], c["프로그래밍"][word], c["봉사활동"][word]])
+    if (maxL == c["책"][word]):
+        cMax[word] = ["책", c["책"][word]]
+    elif (maxL == c["자기계발"][word]):
+        cMax[word] = ["자기계발", c["자기계발"][word]]
+    elif (maxL == c["프로그래밍"][word]):
+        cMax[word] = ["프로그래밍", c["프로그래밍"][word]]
+    elif (maxL == c["봉사활동"][word]):
+        cMax[word] = ["봉사활동", c["봉사활동"][word]]
+print(cMax)
+
 
 # %%
+# IECDF 구하기
+def IECDF(cMax, w):
+    cOthers = {
+        "책": booksCorpus,
+        "자기계발": selfCorpus,
+        "프로그래밍": programCorpus,
+        "봉사활동": volunCorpus
+    }
+    del cOthers[cMax]
+    ## cOthers의 문서수
+    docsLen = 0
+    print(cOthers)
+    # for c in cOthers:
+    #     docsLen += len(c)
+
+
+for word in corpus_result:
+    IECDF(cMax[word][0], word)
+# %%
+
+각각의 Cothers 값을 구하였습니다.
